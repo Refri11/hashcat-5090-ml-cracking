@@ -1,0 +1,12 @@
+# Contenedor para el generador neuronal (GPT char-level).
+# Base CUDA 12.8 -> necesaria para Blackwell (RTX 5090 = sm_120).
+FROM nvidia/cuda:12.8.1-runtime-ubuntu24.04
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 python3-pip ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+# PyTorch con CUDA 12.8: soporta sm_120 (Blackwell) desde la 2.7. Wheel grande (~2,5 GB).
+RUN pip3 install --no-cache-dir --break-system-packages \
+        torch --index-url https://download.pytorch.org/whl/cu128
+WORKDIR /work
+CMD ["/bin/bash"]

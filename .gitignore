@@ -1,0 +1,21 @@
+# --- Datos pesados y derivables (NO se versionan) ---
+rockyou.txt
+train.txt
+test.txt
+md5.txt
+ntlm.txt
+bcrypt.txt
+cracked_*.txt
+passgpt_candidates.txt
+
+# --- Modelos entrenados (derivables, pesan) ---
+*.pt
+pcfg_cracker/
+
+# --- Potfiles de hashcat ---
+*.potfile
+hashcat.potfile
+
+# --- Python ---
+__pycache__/
+*.pyc

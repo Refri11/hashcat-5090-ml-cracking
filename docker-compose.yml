@@ -1,0 +1,34 @@
+services:
+  lab:
+    build: .
+    image: hashcat-5090-lab
+    stdin_open: true
+    tty: true
+    working_dir: /work
+    volumes:
+      - ./:/work
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  passgpt:
+    build:
+      context: .
+      dockerfile: Dockerfile.passgpt
+    image: passgpt-5090
+    stdin_open: true
+    tty: true
+    working_dir: /work
+    volumes:
+      - ./:/work
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
